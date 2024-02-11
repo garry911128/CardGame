@@ -12523,7 +12523,6 @@ GameObject:
   - component: {fileID: 1961999525}
   - component: {fileID: 1961999524}
   - component: {fileID: 1961999526}
-  - component: {fileID: 1961999527}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -12614,18 +12613,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1961999527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961999521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e77e2f240008b24da57a2cf86bcc3b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1982474118 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1949205051787691660, guid: 1f67ca668313cb1468454b985ec88669, type: 3}
@@ -13933,7 +13920,6 @@ MonoBehaviour:
   deck: {fileID: 226490081253621765}
   hand: {fileID: 1961999522}
   turnManager: {fileID: 1668932593}
-  handZone: {fileID: 1961999527}
   playerEnergyFill: {fileID: 1186292336}
   currentEnergy: 0
   DeckCardCount: {fileID: 1695109390}

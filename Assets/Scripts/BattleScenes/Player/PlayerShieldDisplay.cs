@@ -8,7 +8,7 @@ public class PlayerShieldDisplay : MonoBehaviour
     public Player player;
     public void playerShieldDisplay()
     {
-        if (player.shield > 0)
+        if (player._shield > 0)
         {
             shieldDisplay.gameObject.SetActive(true);
         }
@@ -20,7 +20,7 @@ public class PlayerShieldDisplay : MonoBehaviour
     }
     private void Update()
     {
-        if (player.shield > 0)
+        if (player._shield > 0)
         {
             shieldDisplay.gameObject.SetActive(true);
         }

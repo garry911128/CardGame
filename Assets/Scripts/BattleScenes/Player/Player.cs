@@ -1,54 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour
+
+namespace Assets.Scripts.BattleScenes.Player
 {
-    public int maxHealth = 100;
-    public int shield = 0;
-    public int currentHealth;
-    public PlayerHealthBar healthBar;
-    public int GetCurrentHealth()
+    public class Player : MonoBehaviour
     {
-        return currentHealth;
-    }
-    void UpdateHealthBar()
-    {
-        float healthNormalized = (float)currentHealth / maxHealth;
-        healthBar.SetHealthFromRightToLeft(healthNormalized);
-    }
-    private void Start()
-    {
-        currentHealth = maxHealth;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        if (shield > 0)
+        private int maxHealth = PlayerConstants.MAX_PLAYER_HP;
+        public int _shield = 0;
+        public int currentHealth;
+        public PlayerHealthBar healthBar;
+        private DeckManager _deck;
+        private List<Card> _handZone;
+        public int GetCurrentHealth()
         {
-            if (damage >= shield)
+            return currentHealth;
+        }
+        void UpdateHealthBar()
+        {
+            float healthNormalized = (float)currentHealth / maxHealth;
+            healthBar.SetHealthFromRightToLeft(healthNormalized);
+        }
+        private void Start()
+        {
+            currentHealth = maxHealth;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            if (_shield > 0)
             {
-                damage -= shield;
-                shield = 0;
+                if (damage >= _shield)
+                {
+                    damage -= _shield;
+                    _shield = 0;
+                }
+                else
+                {
+                    _shield -= damage;
+                    damage = 0;
+                }
             }
-            else
+
+            currentHealth -= damage;
+            UpdateHealthBar();
+
+            if (currentHealth <= 0)
             {
-                shield -= damage;
-                damage = 0;
+                Die();
             }
         }
 
-        currentHealth -= damage;
-        UpdateHealthBar();
-
-        if (currentHealth <= 0)
+        public void DragCard(PointerEventData pointerEvent)
         {
-            Die();
+            //this.transform.position = pointerEvent.position;
         }
-    }
 
-    private void Die()
-    {
-        // 玩家死亡時的處理...
+        private void Die()
+        {
+            // 玩家死亡時的處理...
+        }
     }
 }

@@ -13,38 +13,40 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private bool isDragging = false;
     private Vector3 originalScale;
     private Vector3 enlargedScale = new Vector3(2f, 2f, 2f);
-
+    private Vector3 hoverOffset = new Vector3(0f, 40f, 0f); // 向上移动的偏移量
     private void Start()
     {
         originalScale = transform.localScale;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-            isDragging = true;
-            parentToReturnTo = this.transform.parent;
-            this.transform.SetParent(this.transform.parent.parent);
-            cardInfo = GetComponent<Card>();
-            GetComponent<CanvasGroup>().blocksRaycasts = false;
+        Debug.Log("#####mouse press");
+        isDragging = true;
+        parentToReturnTo = this.transform.parent;
+        this.transform.SetParent(this.transform.parent.parent);
+        cardInfo = GetComponent<Card>();
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
   
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         this.transform.position = eventData.position;
-        //Debug.Log("Drag");
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("mouse release");
         isDragging = false;
         this.transform.SetParent(parentToReturnTo);     
         GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
-    private Vector3 hoverOffset = new Vector3(0f, 40f, 0f); // 向上移动的偏移量
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (eventData.pointerDrag == gameObject)
+        Debug.Log("mouse in card " + gameObject.name);
         transform.position += hoverOffset;
         //StartCoroutine(EnlargeCard());
         isHovered = true;
@@ -52,6 +54,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        Debug.Log("mouse exit card " + gameObject.name);
         transform.position -= hoverOffset;
         //StartCoroutine(ShrinkCard());
         isHovered = false;

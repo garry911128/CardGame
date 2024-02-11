@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 
         if (player != null && playerShield != null)
         {
-            playerShield.text = player.shield.ToString();
+            playerShield.text = player._shield.ToString();
         }
 
         if (deckManager != null && playerEnergyText != null)

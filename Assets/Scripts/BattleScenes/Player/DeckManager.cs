@@ -8,7 +8,6 @@ public class DeckManager : MonoBehaviour
     public Transform deck; // 牌堆的区域
     public Transform hand; // 手牌区域
     public TurnManager turnManager;
-    public HandZone handZone;
     public PlayerEnergyFill playerEnergyFill;
     public int currentEnergy = 0; // 当前能量值
     public Text DeckCardCount;
@@ -41,6 +40,7 @@ public class DeckManager : MonoBehaviour
     public void ShuffleDeck()
     {
         // 洗牌，将牌堆中的卡牌随机排序
+        Debug.Log("sort in deck Manager");
         for (int i = 0; i < cards.Count; i++)
         {
             int randomIndex = Random.Range(i, cards.Count);
@@ -78,15 +78,9 @@ public class DeckManager : MonoBehaviour
         {
             Transform drawnCard = cards[0];
             cards.RemoveAt(0);
-
             // 移动卡牌到手牌区域的底部
             drawnCard.SetParent(hand);
             drawnCard.SetAsLastSibling(); // 将卡牌放到最后，即手牌的底部
-
-           
-
-
-
         }
     }
 

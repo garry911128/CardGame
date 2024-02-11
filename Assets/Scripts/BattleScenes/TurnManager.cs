@@ -68,7 +68,7 @@ public class TurnManager : MonoBehaviour
             //default:
                 //break;
         }
-        player.shield = 0;
+        player._shield = 0;
         enemy.HideMoveImage();
         enemy.chosenAction = -1;
         ESD.enemyShieldDisplay();

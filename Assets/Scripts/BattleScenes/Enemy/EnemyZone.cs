@@ -55,7 +55,7 @@ public class EnemyZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                 bool energyConsumed = deckManager.ConsumeEnergy(cost);
                 if (energyConsumed)
                 {
-                    player.shield += 5;
+                    player._shield += 5;
                     PSD.playerShieldDisplay();
                     if (drag != null)
                     {
