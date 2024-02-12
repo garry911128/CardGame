@@ -66,10 +66,13 @@ public class DeckManager : MonoBehaviour
         while (currentHandSlotIndex < 6 && cards.Count > 0)
         {
             yield return new WaitForSeconds(0.2f); // 每隔0.05秒抽一张牌
-
             DrawCard();
             // 如果手牌的数量已经到达6，可以考虑将 currentHandSlotIndex 重置为 0 或不再增加。
             currentHandSlotIndex++;
+        }
+        foreach (Transform cardTransform in hand)
+        {
+            cardTransform.GetComponent<Drag>().enabled = true;
         }
     }
     public void DrawCard()
@@ -82,11 +85,7 @@ public class DeckManager : MonoBehaviour
             // 移动卡牌到手牌区域的底部
             drawnCard.SetParent(hand);
             drawnCard.SetAsLastSibling(); // 将卡牌放到最后，即手牌的底部
-
-           
-
-
-
+            drawnCard.GetComponent<Drag>().enabled = false;
         }
     }
 
