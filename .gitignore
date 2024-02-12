@@ -5,7 +5,7 @@
 /[Oo]bj/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
- 
+
 # unity ignore file
 *.csproj
 *.unityproj
@@ -14,6 +14,9 @@
 *.userprefs
 *.meta
 *.tmp
- 
+
 # need include the meta of file
 !*.*.meta
+
+# Visual Studio specific
+*.suo
