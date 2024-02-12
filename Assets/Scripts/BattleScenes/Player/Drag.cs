@@ -14,18 +14,20 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private Vector3 originalScale;
     private Vector3 enlargedScale = new Vector3(2f, 2f, 2f);
 
+    public static Drag _draggingCard;
+
     private void Start()
     {
         originalScale = transform.localScale;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-            isDragging = true;
-            parentToReturnTo = this.transform.parent;
-            this.transform.SetParent(this.transform.parent.parent);
-            cardInfo = GetComponent<Card>();
-            GetComponent<CanvasGroup>().blocksRaycasts = false;
-  
+        _draggingCard = this;
+        isDragging = true;
+        parentToReturnTo = this.transform.parent;
+        this.transform.SetParent(this.transform.parent.parent);
+        cardInfo = GetComponent<Card>();
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -36,6 +38,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        _draggingCard = null;
         isDragging = false;
         this.transform.SetParent(parentToReturnTo);     
         GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -45,6 +48,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if ( _draggingCard != null)
+        {
+            return;
+        }
         transform.position += hoverOffset;
         //StartCoroutine(EnlargeCard());
         isHovered = true;
@@ -52,9 +59,12 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.position -= hoverOffset;
-        //StartCoroutine(ShrinkCard());
-        isHovered = false;
+        if (isHovered == true)
+        {
+            transform.position -= hoverOffset;
+            //StartCoroutine(ShrinkCard());
+            isHovered = false;
+        }
     }
 
     /*IEnumerator EnlargeCard()
