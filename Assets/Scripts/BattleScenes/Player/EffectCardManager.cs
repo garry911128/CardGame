@@ -38,7 +38,7 @@ public class EffectCardManager : MonoBehaviour
 
     void Update()
     {
-        float healthPercentage = (float)player.currentHealth / player.maxHealth * 100f;
+        float healthPercentage = (float)player.currentHealth / PlayerConstants.MAX_PLAYER_HP * 100f;
 
         if (effectCardsContainer.childCount == 5 && healthPercentage <= 85f)
         {

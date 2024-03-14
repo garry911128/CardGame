@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
 
         if (player != null && playerHealth != null)
         {
-            playerHealth.text = player.currentHealth.ToString() + '/' + player.maxHealth.ToString();
+            playerHealth.text = player.currentHealth.ToString() + '/' + PlayerConstants.MAX_PLAYER_HP.ToString();
         }
 
         if (player != null && playerShield != null)

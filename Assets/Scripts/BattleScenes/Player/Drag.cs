@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +13,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     private bool isDragging = false;
     private Vector3 originalScale;
     private Vector3 enlargedScale = new Vector3(2f, 2f, 2f);
-
+    private Vector3 hoverOffset = new Vector3(0f, 40f, 0f); // 向上移动的偏移量
     public static Drag _draggingCard;
 
     private void Start()
